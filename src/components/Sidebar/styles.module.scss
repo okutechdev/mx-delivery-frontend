@@ -5,7 +5,8 @@
     padding: 0;
     width: 300px;
     padding: 12px;
-    text-align: center;
+    align-items: center;
+    justify-content: space-between;
     background-color: #E6A10A;
     position: fixed;
     height: 100%;
@@ -13,9 +14,27 @@
     color: #fff;
   
     a {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
       font-size: 18px;
       font-weight: 500;
       margin-bottom: 20px;
+
+      i{
+        margin-right: 12px;
+      }
+    }
+
+    a:first-child{
+      font-size: 32px;
+      margin-top: 1rem;
+      margin-bottom: 4rem;
+    }
+
+    h3 {
+      font-size: 16px;
     }
 
   }
