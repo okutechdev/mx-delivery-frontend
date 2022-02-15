@@ -35,7 +35,7 @@ const Orders = ({ orders }: OrdersProps)=>{
     
     return (
         <>
-        <PageHeader title='Pedidos' 
+        <PageHeader title={`Pedidos: ${orders.length} `}
                     handle={()=> router.push('/orders/register')}
                     buttonTitle='Registrar Novo Pedido'/>
           {orders.length> 0 && orders.map(order=>(

@@ -26,7 +26,7 @@ const Products = ({products} : ProductProps)=>{
     
     return (
         <>
-        <PageHeader title='Produtos' handle={handleRegister}
+        <PageHeader title={`Produtos: ${products.length}`} handle={handleRegister}
                     buttonTitle='Registrar Novo Produto'/>
         {products.length > 0 && products.map(product=>(
             <div className={styles.card} key={product.id}>

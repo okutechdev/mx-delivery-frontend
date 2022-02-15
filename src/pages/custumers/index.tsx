@@ -28,7 +28,7 @@ const Custumers = ({custumers}:CustumerProps)=>{
     
     return (
         <>
-        <PageHeader title='Clientes' 
+        <PageHeader title={`Clientes: ${custumers.length}`} 
                     handle={handleRegisterCustumer}
                     buttonTitle='Registrar Novo Cliente'/>
         {custumers.length > 0 && custumers.map(custumer=>(
