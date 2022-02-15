@@ -1,0 +1,19 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+        color: #fff;
+        background-color: #14D428;
+        height: 40px;
+        width: 300px;
+        margin: 0;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 8px;
+    }
+}

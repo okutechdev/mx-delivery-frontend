@@ -1,0 +1,21 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    width: 300px;
+    padding: 12px;
+    text-align: center;
+    background-color: #E6A10A;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    color: #fff;
+  
+    a {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+  }

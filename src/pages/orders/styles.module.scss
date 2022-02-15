@@ -1,0 +1,44 @@
+.container {
+    padding: 12px 20px 12px 0;
+
+    .summary {
+        display: flex;
+        flex-direction: column;
+        padding: 8px;
+
+        h3, span{
+            margin: 0px;
+            padding: 0px;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        button {
+            width: 60%;
+            height: 45px;
+            border: none;
+            border-radius: 5px;
+            background-color: #14D428;
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 12px;
+            margin-left: 12px;
+            cursor: pointer;
+            padding: 12px;
+        }
+    
+        button:last-child{
+            background-color: #D5A63E ;
+        }
+    }
+
+}
