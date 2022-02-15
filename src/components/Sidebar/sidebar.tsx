@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
 import styles from './styles.module.scss';
-import { FiInbox, FiPackage, FiSettings, FiUser } from 'react-icons/fi'
+import { FiHome, FiInbox, FiPackage, FiSettings, FiUser } from 'react-icons/fi'
 
 const SideBar: NextPage = ()=>{
     return (
@@ -9,6 +9,12 @@ const SideBar: NextPage = ()=>{
        <nav>
             <Link href={'/'}>
                     <a>MX Delivery</a>
+            </Link>
+            <Link href={'/'}>
+                <a>
+                    <i><FiHome size={24}/></i>
+                    Dashboard
+                </a>
             </Link>
             <Link href={'/orders'}>
                 <a>

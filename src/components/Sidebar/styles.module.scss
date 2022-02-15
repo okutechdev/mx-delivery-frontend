@@ -12,26 +12,32 @@
     height: 100%;
     overflow: auto;
     color: #fff;
-  
-    a {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      font-size: 18px;
-      font-weight: 500;
-      margin-bottom: 20px;
-      text-align: center;
 
-      i{
-        margin-right: 12px;
+    nav{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+      a {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 20px;
+        text-align: center;
+
+        i{
+          margin-right: 12px;
+        }
       }
-    }
 
     a:first-child{
       font-size: 32px;
       margin-top: 1rem;
       margin-bottom: 4rem;
+    }
     }
 
     h3 {
