@@ -3,7 +3,7 @@ import styles from './styles.module.scss'
 
 type SmallCardType = {
   title: string,
-  subtitle: string,
+  subtitle: number,
   color?: string
 }
 
