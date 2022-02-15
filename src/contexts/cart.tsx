@@ -18,6 +18,7 @@ type CartContextProps = {
     order_items: OrderItem[]
     subtotal: number
     addItem: (product: Product)=> void
+    removeItem: (product_id: number)=> void
     cleanCart: ()=> void
 }
 
@@ -58,12 +59,21 @@ export const CartProvider: NextPage = ({children})=>{
         }])
     }
 
+    const removeItem = (product_id: number)=>{
+        const existItem = order_items.find(item=> item.product_id == product_id);
+
+        if(existItem){
+            const orderFilter = order_items.filter(item=> item.product_id != existItem.product_id);
+            setOrderItems([...orderFilter])
+        }
+    }
+
     const cleanCart = ()=> {
         setOrderItems([]);
     }
 
     return(
-        <CartContext.Provider value={{ order_items, subtotal, addItem, cleanCart }}>
+        <CartContext.Provider value={{ order_items, subtotal, addItem, cleanCart, removeItem }}>
             {children}
         </CartContext.Provider>
     )

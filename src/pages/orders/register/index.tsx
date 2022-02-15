@@ -23,7 +23,7 @@ type RegisterProps = {
 
 const Register = ({ products }: RegisterProps)=>{
 
-    const { order_items, subtotal, cleanCart, addItem } = useCart()
+    const { order_items, subtotal, cleanCart, addItem, removeItem } = useCart()
 
     const router = useRouter();
     const [searchQuery, setSeachQuery] = useState('')
@@ -41,6 +41,10 @@ const Register = ({ products }: RegisterProps)=>{
 
     const handleAddItem = (product: Product)=>{
         addItem(product);
+    }
+
+    const handleRemoveItem = (product_id : number)=>{
+        removeItem(product_id)
     }
 
     const handleClean = ()=>{
@@ -79,7 +83,9 @@ const Register = ({ products }: RegisterProps)=>{
                 <div className={styles.summary}>
                     <div className={styles.items}>
                         {order_items.length > 0 && order_items.map(orderItem=>(
-                            <OrderItemCard key={orderItem.product_id} orderItem={orderItem}/>
+                            <OrderItemCard key={orderItem.product_id} 
+                                           handleRemove={()=> handleRemoveItem(orderItem.product_id)}
+                                           orderItem={orderItem}/>
                         ))}
                     </div>
                     <div className={styles.itemsSummary}>

@@ -1,4 +1,5 @@
 import styles from './styles.module.scss'
+import { FiTrash } from 'react-icons/fi'
 
 type OrderItem = {
     product_description: string,
@@ -9,8 +10,10 @@ type OrderItem = {
 
 type OrderItemCardProps = {
     orderItem: OrderItem
+    handleRemove?: ()=> void
 }
-const OrderItemCard = ({orderItem}: OrderItemCardProps)=>{
+
+const OrderItemCard = ({orderItem, handleRemove}: OrderItemCardProps)=>{
     return (
             <div className={styles.orderItem} key={orderItem.product_id}>
                 <div className={styles.description}>
@@ -18,6 +21,7 @@ const OrderItemCard = ({orderItem}: OrderItemCardProps)=>{
                     <span>{orderItem.qts}x unidades</span>
                 </div>
                 <h3>{orderItem.subtotal} KZ</h3>
+                {handleRemove && <FiTrash onClick={handleRemove} size={24}/>}
             </div>
         )
 }
