@@ -52,6 +52,7 @@ const Detail = ({ order }: DetailProps)=> {
             <h2>Detalhe do Pedido</h2>
             <OrderCard name={`${order.custumer.firstname} 
                               ${order.custumer.lastname}`}
+                       status={order.status}
                        reference={`#${order.code}`}
                        orderTime={new Date(order.delivery_date).toLocaleTimeString('pt')}
                        location={order.delivery_address}/>
@@ -71,7 +72,7 @@ const Detail = ({ order }: DetailProps)=> {
                     }}/>
                 ))}
                <div className={styles.buttons}>
-                    <button>Marcar como Entregue</button>
+                    {order.status == 'Pendente' && <button>Marcar como Entregue</button>}
                     <button onClick={handleBack}>Voltar</button>
                </div>
             </div>

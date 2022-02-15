@@ -9,6 +9,7 @@ type OrderResponseType = {
     code : string,
     delivery_address: string
     delivery_date: Date,
+    status: string,
     custumer:  {
         firstname: string,
         lastname: string,
@@ -20,6 +21,7 @@ type OrderProps = {
     delivery_address: string
     delivery_date: string,
     custumer:  string
+    status: string
 }
 
 type OrdersProps = {
@@ -40,6 +42,7 @@ const Orders = ({ orders }: OrdersProps)=>{
                     buttonTitle='Registrar Novo Pedido'/>
           {orders.length> 0 && orders.map(order=>(
             <OrderCard key={order.code} 
+                status={order.status}
                 handle={()=> handleOnClick(order.code)}
                 name={order.custumer} 
                 location={order.delivery_address}
@@ -64,7 +67,8 @@ export const getServerSideProps: GetServerSideProps = async(ctx)=>{
             code : order.code,
             delivery_address: order.delivery_address,
             delivery_date: new Date(order.delivery_date).toLocaleTimeString('pt'),
-            custumer: `${order.custumer.firstname} ${order.custumer.lastname}`
+            custumer: `${order.custumer.firstname} ${order.custumer.lastname}`,
+            status: order.status
         }
     })
 
