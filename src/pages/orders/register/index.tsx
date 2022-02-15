@@ -23,27 +23,17 @@ type RegisterProps = {
 
 const Register = ({ products }: RegisterProps)=>{
 
-    const { order_items, cleanCart, addItem } = useCart()
+    const { order_items, subtotal, cleanCart, addItem } = useCart()
 
     const router = useRouter();
     const [searchQuery, setSeachQuery] = useState('')
     const [searchResults, setSearchResults] = useState<Product[]>(products)
-    const [subTotal, setSubtotal] = useState(0);
 
     useEffect(()=>{
         const filterResults = products.filter(product=> product.description.toLowerCase().includes(searchQuery.toLowerCase()))
         setSearchResults(filterResults)
     },[searchQuery, products])
 
-    useEffect(()=>{
-        if(order_items.length >= 0){
-            let counter = 0;
-            for(const order of order_items){
-                counter += order.subtotal
-            }
-            setSubtotal(counter)
-        }
-    }, [order_items])
 
     const handleSearch = ({target: {value}}: BaseSyntheticEvent)=>{
         setSeachQuery(value);
@@ -93,7 +83,7 @@ const Register = ({ products }: RegisterProps)=>{
                         ))}
                     </div>
                     <div className={styles.itemsSummary}>
-                        <span>Subtotal: {subTotal} KZ</span>
+                        <span>Subtotal: {subtotal} KZ</span>
                         <button type='button' onClick={handleRegister}>Registrar</button>
                         <button type='button' 
                                 onClick={handleClean}

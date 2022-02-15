@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 type Product={
     id: number
@@ -26,7 +26,17 @@ export const CartContext = createContext({} as CartContextProps)
 export const CartProvider: NextPage = ({children})=>{
 
     const [order_items, setOrderItems] = useState<OrderItem[]>([]);
-    const subtotal = 0;
+    const [subtotal, setSubtotal] = useState(0);
+
+    useEffect(()=>{
+        if(order_items.length >= 0){
+            let counter = 0;
+            for(const order of order_items){
+                counter += order.subtotal
+            }
+            setSubtotal(counter)
+        }
+    }, [order_items])
 
     const addItem = (product: Product)=>{
         const existItem = order_items.find(item=> item.product_id == product.id);
