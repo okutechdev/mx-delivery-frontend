@@ -43,8 +43,12 @@ const Detail = ({ order }: DetailProps)=> {
     const router = useRouter();
 
     const handleBack = ()=> router.back();
-    const handleDeliveryDone = ()=>{
-        
+
+    const handleDeliveryDone = async (order: OrderProps)=>{
+        const { status } = await api.put<OrderProps>(`/orders/${order.code}`,{
+            status :'Entregue'
+        })
+        if(status === 200) router.push('/orders')
     }
 
     return (
@@ -72,7 +76,11 @@ const Detail = ({ order }: DetailProps)=> {
                     }}/>
                 ))}
                <div className={styles.buttons}>
-                    {order.status == 'Pendente' && <button>Marcar como Entregue</button>}
+                    {order.status == 'Pendente' && 
+                            <button onClick={()=> handleDeliveryDone(order)}>
+                                Marcar como Entregue
+                            </button>
+                    }
                     <button onClick={handleBack}>Voltar</button>
                </div>
             </div>

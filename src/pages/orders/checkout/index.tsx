@@ -30,17 +30,16 @@ type ChechoutProps = {
 
 const Chechout  = ({ custumers }: ChechoutProps) => {
 
+    const router = useRouter();
     const { user } = useAuth();
     const { order_items, cleanCart, subtotal } = useCart();
-    const router = useRouter();
+    const { handleSubmit, register } = useForm<OrderInput>();
 
     useEffect(()=>{
-        if(order_items.length <= 0){
+        if(order_items.length == 0){
             router.back();
         }
     })
-
-    const { handleSubmit, register} = useForm<OrderInput>();
 
     const onSubmit : SubmitHandler<OrderInput> = async (values)=>{
 
