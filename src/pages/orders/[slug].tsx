@@ -30,7 +30,8 @@ type OrderProps = {
     custumer: {
         firstname: string,
         lastname: string,
-        phone_number: string
+        phone_number: string,
+        alt_phone_number: string
     },
     order_items: OrderItem[]
 }
@@ -64,6 +65,8 @@ const Detail = ({ order }: DetailProps)=> {
             <div className={styles.container}>
                 <div className={styles.summary}>
                     <h3>Telefone: {order.custumer.phone_number}</h3>
+                   {order.custumer.alt_phone_number && 
+                        <h3>Telefone Alternativo: {order.custumer.alt_phone_number}</h3>}
                     <span>Subtotal: {order.subtotal} KZ</span>
                 </div>
 
