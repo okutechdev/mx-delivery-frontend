@@ -2,6 +2,7 @@ import styles from './styles.module.scss'
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 import { BaseSyntheticEvent, useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import PageHeader from '../../../components/PageHeader';
 import Layout from '../../../components/Layout';
@@ -71,12 +72,11 @@ const Register = ({ products }: RegisterProps)=>{
                         </div>
                         <div className={styles.productList}>
                                 {searchResults.length > 0 && searchResults.map(product=>(
-                                    <div  key={product.id}
-                                        onClick={()=>handleAddItem(product)}
-                                        className={styles.product_item}>
-                                        <p>{product.description}</p>
-                                        <p>{product.price} KZ</p>
-                                    </div>
+                                        <div  key={product.id} onClick={()=>handleAddItem(product)}
+                                            className={styles.product_item}>
+                                            <p>{product.description}</p>
+                                            <p>{product.price} KZ</p>
+                                        </div>
                                 ))}
                         </div>
                     </div>

@@ -56,3 +56,28 @@
     }
     
 }
+
+@media (max-width: 700px) {
+   .container {
+       padding: 1rem;
+
+       form {
+           width: 100%;
+       }
+       h2 {
+           font-size: 2rem;
+       }
+   }
+}
+
+@media (max-width: 700px) {
+    .container {
+        form {
+           input, button {
+               height: 30px;
+               font-size: 16px;
+           }
+        }
+      
+    }
+ }
