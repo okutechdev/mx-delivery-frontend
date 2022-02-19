@@ -7,7 +7,7 @@ import PageHeader from '../../components/PageHeader';
 import { api } from '../../services/api';
 
 type Product = {
-    id?: number
+    id: number
     description: string
     buy_price: number
     price: number
@@ -18,18 +18,19 @@ type ProductProps = {
 }
 
 const Products = ({products} : ProductProps)=>{
+    
     const router = useRouter()
 
-    const handleRegister = ()=>{
-        router.push('/products/register')
-    }
+    const handleRegister = () =>  router.push('/products/register')
+
+    const handleEdit = (slug: number) => router.push(`/products/${slug}`)
     
     return (
         <>
         <PageHeader title={`Produtos: ${products.length}`} handle={handleRegister}
                     buttonTitle='Registrar Novo Produto'/>
         {products.length > 0 && products.map(product=>(
-            <div className={styles.card} key={product.id}>
+            <div onClick={()=>handleEdit(product.id)} className={styles.card} key={product.id}>
                 <div className={styles.description}>
                     <h3>{product.description}</h3>
                 </div>
