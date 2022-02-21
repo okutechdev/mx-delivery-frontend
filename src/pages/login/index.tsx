@@ -24,7 +24,7 @@ const Login  = ()=>{
                 <label htmlFor="username">Username</label>
                 <input {...register('username')} />
                 <label htmlFor="password">Password</label>
-                <input {...register('password')} />
+                <input type={'password'} {...register('password')} />
                 <button type="submit">Conectar</button>
             </form>
         </div>

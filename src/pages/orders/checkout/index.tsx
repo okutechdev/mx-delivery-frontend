@@ -21,7 +21,8 @@ type OrderInput = {
     custumer_id: number,
     address: string
     delivery_date: Date,
-    delivery_tax: number
+    delivery_tax: number,
+    created_at: Date
 }
 
 type ChechoutProps = {
@@ -47,7 +48,7 @@ const Chechout  = ({ custumers }: ChechoutProps) => {
             custumer_id : values.custumer_id,
             delivery_address: values.address,
             user_id : user?.id,
-            subtotal: subtotal,
+            subtotal: subtotal + Number(values.delivery_tax),
             order_items: order_items.map(item=>{
                 return {
                     product_id : item.product_id,
@@ -87,6 +88,11 @@ const Chechout  = ({ custumers }: ChechoutProps) => {
 
                     <label htmlFor="delivery_tax">Taxa de Entrega</label>
                     <input type={'number'} {...register('delivery_tax') } />
+
+                    <label htmlFor="created_at">Data do Pedido</label>
+                    <input type={'datetime-local'} {...register('created_at',{
+                        valueAsDate: true
+                    })} />
 
                     <h2>Subtotal: {subtotal} KZ</h2>
                     <button type="submit">Registrar</button>

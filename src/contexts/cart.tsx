@@ -44,7 +44,8 @@ export const CartProvider: NextPage = ({children})=>{
 
         if(existItem){
             existItem.qts = existItem.qts + 1;
-            existItem.subtotal = existItem.subtotal * existItem.qts;
+            
+            existItem.subtotal = (existItem.price * existItem.qts);
             const orderFilter = order_items.filter(item=> item.product_id != existItem.product_id);
             return setOrderItems([...orderFilter, { ...existItem }])
         }
