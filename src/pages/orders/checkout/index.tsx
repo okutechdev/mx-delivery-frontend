@@ -22,7 +22,6 @@ type OrderInput = {
     address: string
     delivery_date: Date,
     delivery_tax: number,
-    created_at: Date
 }
 
 type ChechoutProps = {
@@ -47,6 +46,7 @@ const Chechout  = ({ custumers }: ChechoutProps) => {
         const serializeOrder = {
             custumer_id : values.custumer_id,
             delivery_address: values.address,
+            delivery_date: new Date(),
             user_id : user?.id,
             subtotal: subtotal + Number(values.delivery_tax),
             order_items: order_items.map(item=>{
@@ -89,8 +89,8 @@ const Chechout  = ({ custumers }: ChechoutProps) => {
                     <label htmlFor="delivery_tax">Taxa de Entrega</label>
                     <input type={'number'} {...register('delivery_tax') } />
 
-                    <label htmlFor="created_at">Data do Pedido</label>
-                    <input type={'datetime-local'} {...register('created_at',{
+                    <label htmlFor="delivery_date">Data do Pedido</label>
+                    <input type={'datetime-local'} {...register('delivery_date', {
                         valueAsDate: true
                     })} />
 

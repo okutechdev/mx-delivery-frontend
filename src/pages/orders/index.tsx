@@ -66,7 +66,7 @@ export const getServerSideProps: GetServerSideProps = async(ctx)=>{
         return {
             code : order.code,
             delivery_address: order.delivery_address,
-            delivery_date: new Date(order.delivery_date).toLocaleTimeString('pt'),
+            delivery_date: new Date(order.delivery_date).toLocaleString(),
             custumer: `${order.custumer.firstname} ${order.custumer.lastname}`,
             status: order.status
         }
