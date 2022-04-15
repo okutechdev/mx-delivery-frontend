@@ -58,7 +58,7 @@ Orders.layout = Layout;
 export const getServerSideProps: GetServerSideProps = async(ctx)=>{
 
     const token = ctx.req.cookies['%40mxtoken'];
-    api.defaults.headers.Authorization = `Bearer ${token}`
+    api.defaults.headers.common.Authorization = `Bearer ${token}`
 
     const { data } = await api.get<OrderResponseType[]>('/orders');
 

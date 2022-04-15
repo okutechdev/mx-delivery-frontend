@@ -41,7 +41,7 @@ export const AuthProvider: NextPage = ({children})=>{
             if (token && user) {
                 const userData = JSON.parse(user);
                 setUser(userData);
-                api.defaults.headers.Authorization = `Bearer ${token}`
+                api.defaults.headers.common.Authorization = `Bearer ${token}`
             }
         }
         loadUserFromCookies()
@@ -57,7 +57,7 @@ export const AuthProvider: NextPage = ({children})=>{
         Cookies.set(USER_KEY, JSON.stringify(data.user));
 
         setUser(data.user);
-        api.defaults.headers.Authorization = `Bearer ${data.token}`;
+        api.defaults.headers.common.Authorization = `Bearer ${data.token}`;
     }
 
     const logout = ()=>{

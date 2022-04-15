@@ -98,7 +98,7 @@ export const getServerSideProps: GetServerSideProps = async(ctx)=>{
     const { slug } = ctx.query
 
     const token = ctx.req.cookies['%40mxtoken'];
-    api.defaults.headers.Authorization = `Bearer ${token}`
+    api.defaults.headers.common.Authorization = `Bearer ${token}`
 
     const { data } = await api.get<OrderProps[]>(`/orders/${slug}`);
     
