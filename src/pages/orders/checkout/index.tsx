@@ -46,7 +46,7 @@ const Chechout  = ({ custumers }: ChechoutProps) => {
         const serializeOrder = {
             custumer_id : values.custumer_id,
             delivery_address: values.address,
-            delivery_date: new Date(),
+            delivery_date: values.delivery_date,
             user_id : user?.id,
             subtotal: subtotal + Number(values.delivery_tax),
             order_items: order_items.map(item=>{
