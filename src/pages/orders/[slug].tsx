@@ -19,7 +19,7 @@ type OrderItem = {
 
 type OrderProps = {
     id: number,
-    code : string,
+    code: string,
     delivery_date: string,
     subtotal: number,
     status: string,
@@ -39,17 +39,17 @@ type OrderProps = {
 type DetailProps = {
     order: OrderProps
 }
-const Detail = ({ order }: DetailProps)=> {
+const Detail = ({ order }: DetailProps) => {
 
     const router = useRouter();
 
-    const handleBack = ()=> router.back();
+    const handleBack = () => router.back();
 
-    const handleDeliveryDone = async (order: OrderProps)=>{
-        const { status } = await api.put<OrderProps>(`/orders/${order.code}`,{
-            status :'Entregue'
+    const handleDeliveryDone = async (order: OrderProps) => {
+        const { status } = await api.put<OrderProps>(`/orders/${order.code}`, {
+            status: 'Entregue'
         })
-        if(status === 200) router.push('/orders')
+        if (status === 200) router.push('/orders')
     }
 
     return (
@@ -57,35 +57,35 @@ const Detail = ({ order }: DetailProps)=> {
             <h2>Detalhe do Pedido</h2>
             <OrderCard name={`${order.custumer.firstname} 
                               ${order.custumer.lastname}`}
-                       status={order.status}
-                       reference={`#${order.code}`}
-                       orderTime={new Date(order.delivery_date).toLocaleTimeString('pt')}
-                       location={order.delivery_address}/>
+                status={order.status}
+                reference={`#${order.code}`}
+                orderTime={new Date(order.delivery_date).toLocaleTimeString('pt')}
+                location={order.delivery_address} />
 
             <div className={styles.container}>
                 <div className={styles.summary}>
                     <h3>Telefone: {order.custumer.phone_number}</h3>
-                   {order.custumer.alt_phone_number && 
+                    {order.custumer.alt_phone_number &&
                         <h3>Telefone Alternativo: {order.custumer.alt_phone_number}</h3>}
                     <span>Subtotal: {order.subtotal} KZ</span>
                 </div>
 
-                {order.order_items.length > 0 && order.order_items.map(orderItem=>(
+                {order.order_items.length > 0 && order.order_items.map(orderItem => (
                     <OrderItemCard key={orderItem.id} orderItem={{
                         product_description: orderItem.product.description,
                         product_id: orderItem.id,
                         qts: orderItem.qts,
                         subtotal: orderItem.price * orderItem.qts
-                    }}/>
+                    }} />
                 ))}
-               <div className={styles.buttons}>
-                    {order.status == 'Pendente' && 
-                            <button onClick={()=> handleDeliveryDone(order)}>
-                                Marcar como Entregue
-                            </button>
+                <div className={styles.buttons}>
+                    {order.status == 'Pendente' &&
+                        <button onClick={() => handleDeliveryDone(order)}>
+                            Marcar como Entregue
+                        </button>
                     }
                     <button onClick={handleBack}>Voltar</button>
-               </div>
+                </div>
             </div>
         </>
     )
@@ -93,7 +93,7 @@ const Detail = ({ order }: DetailProps)=> {
 
 Detail.layout = Layout;
 
-export const getServerSideProps: GetServerSideProps = async(ctx)=>{
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     const { slug } = ctx.query
 
@@ -101,10 +101,10 @@ export const getServerSideProps: GetServerSideProps = async(ctx)=>{
     api.defaults.headers.common.Authorization = `Bearer ${token}`
 
     const { data } = await api.get<OrderProps[]>(`/orders/${slug}`);
-    
+
     return {
         props: {
-            order : data[0]
+            order: data[0]
         }
     }
 }
