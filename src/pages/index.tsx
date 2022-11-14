@@ -4,36 +4,45 @@ import SmallCard from '../components/SmallCard'
 import { api } from '../services/api'
 
 
-type ItemProps = {
-  id: number
-}
-
-type OrderProps = {
-  id: number
-  status: string
-}
-
 type HomeProps = {
   custumers: number
   products: number
-  orders: OrderProps[]
+  orders: number
 }
 
 
-const Home = () => {
+const Home = ({ custumers, orders, products }: HomeProps) => {
 
   return (
     <>
-     <h2>Dashboard</h2>
-     <SmallCard title='Clientes' subtitle={12}/>
-     <SmallCard title='Pedidos' subtitle={12} color='#E6A10A'/>
-     <SmallCard title='Produtos' subtitle={12} color='#14D428'/>
-     <SmallCard title='Entregues' subtitle={12} color='#14D428'/>
-     <SmallCard title='Pendentes' subtitle={12} color='#E01F27'/>
+      <h2>Dashboard</h2>
+      <SmallCard title='Pedidos' subtitle={orders} color='#E6A10A' />
+      <SmallCard title='Clientes' subtitle={custumers} />
+      <SmallCard title='Produtos' subtitle={products} color='#14D428' />
     </>
   )
 }
 
 Home.layout = Layout;
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+
+  const token = ctx.req.cookies['%40mxtoken'];
+  api.defaults.headers.common.Authorization = `Bearer ${token}`
+
+  const { data: custumers } = await api.get<[]>('/custumers');
+  const { data: products } = await api.get<[]>('/products');
+  const { data: orders } = await api.get<[]>('/orders');
+
+  return {
+    props: {
+      custumers: custumers.length,
+      products: products.length,
+      orders: orders.length
+    }
+  }
+
+}
+
 
 export default Home
