@@ -23,7 +23,11 @@ type OrderProps = {
     delivery_date: string,
     subtotal: number,
     status: string,
-    delivery_address: string,
+    district: {
+        id: number,
+        description: string
+    },
+    delivery_tax: number
     user: {
         username: string
     },
@@ -60,13 +64,14 @@ const Detail = ({ order }: DetailProps) => {
                 status={order.status}
                 reference={`#${order.code}`}
                 orderTime={new Date(order.delivery_date).toLocaleTimeString('pt')}
-                location={order.delivery_address} />
+                location={order.district.description} />
 
             <div className={styles.container}>
                 <div className={styles.summary}>
                     <h3>Telefone: {order.custumer.phone_number}</h3>
                     {order.custumer.alt_phone_number &&
                         <h3>Telefone Alternativo: {order.custumer.alt_phone_number}</h3>}
+                    <span>Taxa de Entrega: {order.delivery_tax}</span>
                     <span>Subtotal: {order.subtotal} KZ</span>
                 </div>
 
