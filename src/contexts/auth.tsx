@@ -49,7 +49,7 @@ export const AuthProvider: NextPage = ({children})=>{
 
 
     const signIn = async({ username, password }: User)=>{
-        const { data } = await api.post<AxiosResponseProps>('/auth/authenticate',{
+        const { data } = await api.post<AxiosResponseProps>('/users/authenticate',{
             username, password
         });
 
