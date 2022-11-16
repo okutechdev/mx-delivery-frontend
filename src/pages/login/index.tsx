@@ -8,13 +8,13 @@ type LoginProps = {
     password: string
 }
 
-const Login  = ()=>{
+const Login = () => {
 
     const { signIn } = useAuth();
-    const { handleSubmit, register} = useForm<LoginProps>();
+    const { handleSubmit, register } = useForm<LoginProps>();
 
-    const handle: SubmitHandler<LoginProps> = async({username, password})=>{
-        signIn({username, password});
+    const handle: SubmitHandler<LoginProps> = async ({ username, password }) => {
+        signIn({ username, password });
     }
 
     return (
