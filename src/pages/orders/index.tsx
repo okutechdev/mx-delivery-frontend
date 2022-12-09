@@ -70,7 +70,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const serializedOrder = data.map(order => {
         return {
             code: order.code,
-            delivery_address: order.district.description,
+            delivery_address: order.district?.description || '',
             delivery_date: new Date(order.delivery_date).toLocaleString(),
             custumer: `${order.custumer.firstname} ${order.custumer.lastname}`,
             status: order.status

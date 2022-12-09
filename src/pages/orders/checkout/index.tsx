@@ -116,7 +116,7 @@ const Chechout = ({ custumers, districts }: ChechoutProps) => {
                     })} />
 
                     <h2>Subtotal: {subtotal + delivery_tax} KZ</h2>
-                    {delivery_tax > 0 && <button type="submit">Registrar</button>}
+                    {delivery_tax > -1 && <button type="submit">Registrar</button>}
 
                     <Link href={'/orders/register'}>
                         <a>Cancelar</a>

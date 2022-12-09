@@ -64,7 +64,7 @@ const Detail = ({ order }: DetailProps) => {
                 status={order.status}
                 reference={`#${order.code}`}
                 orderTime={new Date(order.delivery_date).toLocaleTimeString('pt')}
-                location={order.district.description} />
+                location={order.district?.description || ''} />
 
             <div className={styles.container}>
                 <div className={styles.summary}>
